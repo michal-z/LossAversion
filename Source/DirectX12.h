@@ -60,7 +60,7 @@ inline ID3D12CommandAllocator* DirectX12::GetCmdAllocator() const
 	return m_CmdAlloc[m_FrameIndex];
 }
 
-inline ID3D12CommandQueue * DirectX12::GetCmdQueue() const
+inline ID3D12CommandQueue* DirectX12::GetCmdQueue() const
 {
 	return m_CmdQueue;
 }

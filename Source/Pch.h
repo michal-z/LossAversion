@@ -1,6 +1,5 @@
 #pragma once
 
-#define _HAS_EXCEPTIONS 0
 #define WIN32_LEAN_AND_MEAN 1
 #include <stdint.h>
 #include <assert.h>
@@ -10,5 +9,8 @@
 #include <d3d12.h>
 #include <dxgi1_4.h>
 #include <DirectXMath.h>
+#include "tbb/tbb.h"
+#include "DirectXMath.h"
+#include "EASTL/vector.h"
 #include "d3dx12.h"
 using namespace DirectX;
