@@ -1,7 +1,6 @@
 
-[RootSignature("RootFlags(0)")]
+[RootSignature("RootFlags(ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT)")]
 float4 main(float4 Position : SV_Position) : SV_TARGET
 {
-    float2 P = Position.xy / float2(1280.0f, 720.0f);
-    return float4(P, 0.0f, 1.0f);
+    return float4(0.0f, 1.0f, 0.0f, 1.0f);
 }

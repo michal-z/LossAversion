@@ -4,17 +4,6 @@
 #include "Scene.h"
 
 
-void* operator new[](size_t size, const char* /*name*/, int /*flags*/, unsigned /*debugFlags*/, const char* /*file*/, int /*line*/)
-{
-    return malloc(size);
-}
-
-void* operator new[](size_t size, size_t alignment, size_t alignmentOffset, const char* /*name*/, int /*flags*/, unsigned /*debugFlags*/,
-                     const char* /*file*/, int /*line*/)
-{
-    return _aligned_offset_malloc(size, alignment, alignmentOffset);
-}
-
 static void UpdateFrameTime(HWND window, const char* windowText, double& o_Time, float& o_TimeDelta)
 {
     static double s_LastTime = -1.0;
@@ -105,9 +94,6 @@ static int Run()
         // TODO: Add MessageBox
         return 1;
     }
-
-    eastl::vector<int> xx;
-    xx.push_back(123);
 
     Scene scene(dx12);
     scene.Initialize();

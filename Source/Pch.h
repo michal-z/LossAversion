@@ -9,8 +9,5 @@
 #include <d3d12.h>
 #include <dxgi1_4.h>
 #include <DirectXMath.h>
-#include "tbb/tbb.h"
-#include "DirectXMath.h"
-#include "EASTL/vector.h"
 #include "d3dx12.h"
 using namespace DirectX;

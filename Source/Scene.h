@@ -15,10 +15,11 @@ private:
 
 	ID3D12PipelineState* m_Pso;
 	ID3D12RootSignature* m_Rs;
-	ID3D12Resource* m_CircleVb;
-	ID3D12Resource* m_CircleIb;
+	ID3D12Resource* m_LinesVb;
+	uint8_t* m_LinesVbCpuAddr;
+	D3D12_VERTEX_BUFFER_VIEW m_LinesVbView;
 
-	void CreateCircleGeometry();
+	void CreateBuffers();
 };
 
 inline Scene::Scene(const DirectX12& dx12) : m_Dx12(dx12)
