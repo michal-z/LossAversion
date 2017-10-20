@@ -16,7 +16,7 @@ void Scene::Initialize()
 		{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 	};
 
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc{};
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {};
 	psoDesc.InputLayout = { inputElements, (uint32_t)std::size(inputElements) };
 	psoDesc.VS = { csoVs.data(), csoVs.size() };
 	psoDesc.PS = { csoPs.data(), csoPs.size() };
@@ -37,6 +37,13 @@ void Scene::Initialize()
 
 void Scene::Update(double frameTime, float frameTimeDelta)
 {
+	const uint32_t frameIndex = m_Dx12.GetFrameIndex();
+
+	XMFLOAT2* ptr = (XMFLOAT2*)m_LinesVbCpuAddr[frameIndex];
+
+	*ptr++ = XMFLOAT2(-0.5f, -0.5f);
+	*ptr++ = XMFLOAT2(0.8f, -0.5f);
+	*ptr++ = XMFLOAT2(0.0f, 0.8f);
 }
 
 void Scene::Draw() const
@@ -50,7 +57,7 @@ void Scene::Draw() const
 	cmdList->RSSetViewports(1, &m_Dx12.GetViewport());
 	cmdList->RSSetScissorRects(1, &m_Dx12.GetScissorRect());
 
-	D3D12_RESOURCE_BARRIER barrier{};
+	D3D12_RESOURCE_BARRIER barrier = {};
 	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 	barrier.Transition.pResource = m_Dx12.GetBackBuffer();
 	barrier.Transition.StateBefore = D3D12_RESOURCE_STATE_PRESENT;
@@ -65,7 +72,7 @@ void Scene::Draw() const
 	cmdList->ClearRenderTargetView(backBufferHandle, XMVECTORF32{ 0.0f, 0.2f, 0.4f, 1.0f }, 0, nullptr);
 	cmdList->ClearDepthStencilView(depthBufferHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 
-	cmdList->IASetVertexBuffers(0, 1, &m_LinesVbView);
+	cmdList->IASetVertexBuffers(0, 1, &m_LinesVbView[0]);
 	cmdList->SetPipelineState(m_Pso);
 	cmdList->SetGraphicsRootSignature(m_Rs);
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -86,28 +93,32 @@ void Scene::CreateBuffers()
 
 	{ // vertex buffer
 		auto vbDesc = CD3DX12_RESOURCE_DESC::Buffer(1000);
-		VHR(device->CreateCommittedResource(
-			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD), D3D12_HEAP_FLAG_NONE, &vbDesc, D3D12_RESOURCE_STATE_GENERIC_READ,
-			nullptr, IID_PPV_ARGS(&m_LinesVb)));
+		for (uint32_t i = 0; i < 2; ++i)
+		{
+			VHR(device->CreateCommittedResource(
+				&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD), D3D12_HEAP_FLAG_NONE, &vbDesc,
+				D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&m_LinesVb[i])));
 
-		VHR(m_LinesVb->Map(0, &CD3DX12_RANGE(0, 0), (void**)&m_LinesVbCpuAddr));
+			VHR(m_LinesVb[i]->Map(0, &CD3DX12_RANGE(0, 0), (void**)&m_LinesVbCpuAddr[i]));
 
-		m_LinesVbView.BufferLocation = m_LinesVb->GetGPUVirtualAddress();
-		m_LinesVbView.StrideInBytes = sizeof(XMFLOAT2);
-		m_LinesVbView.SizeInBytes = 3 * m_LinesVbView.StrideInBytes;
+			m_LinesVbView[i].BufferLocation = m_LinesVb[i]->GetGPUVirtualAddress();
+			m_LinesVbView[i].StrideInBytes = sizeof(XMFLOAT2);
+			m_LinesVbView[i].SizeInBytes = 3 * m_LinesVbView[i].StrideInBytes;
 
-		XMFLOAT2* ptr = (XMFLOAT2*)m_LinesVbCpuAddr;
+			XMFLOAT2* ptr = (XMFLOAT2*)m_LinesVbCpuAddr[i];
 
-		*ptr++ = XMFLOAT2(-0.5f, -0.5f);
-		*ptr++ = XMFLOAT2(0.5f, -0.5f);
-		*ptr++ = XMFLOAT2(0.0f, 0.5f);
+			*ptr++ = XMFLOAT2(-0.5f, -0.5f);
+			*ptr++ = XMFLOAT2(0.5f, -0.5f);
+			*ptr++ = XMFLOAT2(0.0f, 0.5f);
+		}
 	}
 
 	/*
 	{ // constant buffer
 		auto cbDesc = CD3DX12_RESOURCE_DESC::Buffer(64 * 1024);
 		device->CreateCommittedResource(
-			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD), D3D12_HEAP_FLAG_NONE, &cbDesc, D3D12_RESOURCE_STATE_GENERIC_READ,
+			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD), D3D12_HEAP_FLAG_NONE, &cbDesc,
+			D3D12_RESOURCE_STATE_GENERIC_READ,
 			nullptr, IID_PPV_ARGS(
 	}
 	*/

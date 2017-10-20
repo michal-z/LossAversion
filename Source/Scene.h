@@ -15,9 +15,9 @@ private:
 
 	ID3D12PipelineState* m_Pso;
 	ID3D12RootSignature* m_Rs;
-	ID3D12Resource* m_LinesVb;
-	uint8_t* m_LinesVbCpuAddr;
-	D3D12_VERTEX_BUFFER_VIEW m_LinesVbView;
+	ID3D12Resource* m_LinesVb[2];
+	uint8_t* m_LinesVbCpuAddr[2];
+	D3D12_VERTEX_BUFFER_VIEW m_LinesVbView[2];
 
 	void CreateBuffers();
 };

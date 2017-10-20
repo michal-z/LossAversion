@@ -20,6 +20,7 @@ public:
 	D3D12_CPU_DESCRIPTOR_HANDLE GetDepthBufferHandle() const;
 	const D3D12_VIEWPORT& GetViewport() const;
 	const D3D12_RECT& GetScissorRect() const;
+	uint32_t GetFrameIndex() const;
 
 private:
 	mutable uint32_t m_BackBufferIndex = 0;
@@ -95,4 +96,9 @@ inline const D3D12_VIEWPORT& DirectX12::GetViewport() const
 inline const D3D12_RECT& DirectX12::GetScissorRect() const
 {
 	return m_ScissorRect;
+}
+
+inline uint32_t DirectX12::GetFrameIndex() const
+{
+	return m_FrameIndex;
 }
