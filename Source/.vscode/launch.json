@@ -5,7 +5,7 @@
                 "name": "(Windows) Launch",
                 "type": "cppvsdbg",
                 "request": "launch",
-                "program": "${workspaceRoot}/../Binary/eneidaD.exe",
+                "program": "${workspaceRoot}/../Binary/LossAversionD.exe",
                 "args": [],
                 "stopAtEntry": false,
                 "cwd": "${workspaceRoot}/../Binary",

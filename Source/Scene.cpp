@@ -91,7 +91,7 @@ void Scene::CreateBuffers()
 {
 	ID3D12Device* device = m_Dx12.GetDevice();
 
-	{ // vertex buffer
+	{ 	// vertex buffer
 		auto vbDesc = CD3DX12_RESOURCE_DESC::Buffer(1000);
 		for (uint32_t i = 0; i < 2; ++i)
 		{

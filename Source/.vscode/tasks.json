@@ -9,7 +9,7 @@
             "command": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/amd64/MSBuild.exe",
             "args": [
                 // Ask msbuild to generate full paths for file names.
-                "${workspaceRoot}/../Build/eneida.sln",
+                "${workspaceRoot}/../Build/LossAversion.sln",
                 "/property:GenerateFullPaths=true",
                 "/t:build"
             ],

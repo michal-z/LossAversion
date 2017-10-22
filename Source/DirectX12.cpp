@@ -46,13 +46,13 @@ bool DirectX12::Initialize(HWND window)
 		return false;
 	}
 
-	D3D12_COMMAND_QUEUE_DESC cmdQueueDesc{};
+	D3D12_COMMAND_QUEUE_DESC cmdQueueDesc = {};
 	cmdQueueDesc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
 	cmdQueueDesc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
 	cmdQueueDesc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
 	VHR(m_Device->CreateCommandQueue(&cmdQueueDesc, IID_PPV_ARGS(&m_CmdQueue)));
 
-	DXGI_SWAP_CHAIN_DESC swapChainDesc{};
+	DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 	swapChainDesc.BufferCount = 4;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
@@ -78,7 +78,7 @@ bool DirectX12::Initialize(HWND window)
 	m_DescriptorSizeRtv = m_Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
 	{ // swap buffers
-		D3D12_DESCRIPTOR_HEAP_DESC heapDesc{};
+		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = {};
 		heapDesc.NumDescriptors = 4;
 		heapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 		heapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
@@ -96,7 +96,7 @@ bool DirectX12::Initialize(HWND window)
 		}
 	}
 	{ // depth buffer
-		D3D12_DESCRIPTOR_HEAP_DESC heapDesc{};
+		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = {};
 		heapDesc.NumDescriptors = 1;
 		heapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 		heapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
@@ -111,7 +111,7 @@ bool DirectX12::Initialize(HWND window)
 			&imageDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &CD3DX12_CLEAR_VALUE(DXGI_FORMAT_D32_FLOAT, 1.0f, 0),
 			IID_PPV_ARGS(&m_DepthBuffer)));
 
-		D3D12_DEPTH_STENCIL_VIEW_DESC viewDesc{};
+		D3D12_DEPTH_STENCIL_VIEW_DESC viewDesc = {};
 		viewDesc.Format = DXGI_FORMAT_D32_FLOAT;
 		viewDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
 		viewDesc.Flags = D3D12_DSV_FLAG_NONE;
