@@ -79,7 +79,7 @@ static LRESULT CALLBACK ProcessWindowMessage(HWND window, UINT message, WPARAM w
     return DefWindowProc(window, message, wParam, lParam);
 }
 
-static constexpr char* k_Name = "Procedural Shapes";
+static constexpr char* k_Name = "Loss Aversion";
 static constexpr uint32_t k_Resolution[2] = { 1280, 720 };
 
 static int Run()

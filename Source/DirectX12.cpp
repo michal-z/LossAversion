@@ -77,7 +77,7 @@ bool DirectX12::Initialize(HWND window)
 	m_DescriptorSize = m_Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	m_DescriptorSizeRtv = m_Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
-	{ // swap buffers
+	{ 	// swap buffers
 		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = {};
 		heapDesc.NumDescriptors = 4;
 		heapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
@@ -95,7 +95,7 @@ bool DirectX12::Initialize(HWND window)
 			handle.Offset(m_DescriptorSizeRtv);
 		}
 	}
-	{ // depth buffer
+	{ 	// depth buffer
 		D3D12_DESCRIPTOR_HEAP_DESC heapDesc = {};
 		heapDesc.NumDescriptors = 1;
 		heapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
@@ -106,10 +106,9 @@ bool DirectX12::Initialize(HWND window)
 		// TODO: set proper width and height
 		CD3DX12_RESOURCE_DESC imageDesc = CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_D32_FLOAT, 1280, 720);
 		imageDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
-		VHR(m_Device->CreateCommittedResource(
-			&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT), D3D12_HEAP_FLAG_NONE,
-			&imageDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &CD3DX12_CLEAR_VALUE(DXGI_FORMAT_D32_FLOAT, 1.0f, 0),
-			IID_PPV_ARGS(&m_DepthBuffer)));
+		VHR(m_Device->CreateCommittedResource(&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT), D3D12_HEAP_FLAG_NONE,
+											  &imageDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &CD3DX12_CLEAR_VALUE(DXGI_FORMAT_D32_FLOAT, 1.0f, 0),
+											  IID_PPV_ARGS(&m_DepthBuffer)));
 
 		D3D12_DEPTH_STENCIL_VIEW_DESC viewDesc = {};
 		viewDesc.Format = DXGI_FORMAT_D32_FLOAT;

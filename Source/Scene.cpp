@@ -2,6 +2,7 @@
 #include "DirectX12.h"
 #include "Library.h"
 #include "Scene.h"
+#include "bass.h"
 
 
 void Scene::Initialize()
