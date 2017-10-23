@@ -11,10 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\Scene.cpp" />
-    <ClCompile Include="..\Source\LossAversion.cpp" />
-    <ClCompile Include="..\Source\DirectX12.cpp" />
-    <ClCompile Include="..\Source\Library.cpp" />
     <ClCompile Include="..\Source\External\EASTL\source\allocator_eastl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -51,6 +47,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\Source\Scene.cpp" />
+    <ClCompile Include="..\Source\LossAversion.cpp" />
+    <ClCompile Include="..\Source\DirectX12.cpp" />
+    <ClCompile Include="..\Source\Library.cpp" />
     <ClCompile Include="..\Source\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -119,7 +119,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Source;..\Source\External\DirectXMath\Inc;..\Source\External\EASTL\include;..\Source\External\EASTL\test\packages\EABase\include\Common;..\Source\External\tbb\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Source;..\Source\External;..\Source\External\DirectXMath\Inc;..\Source\External\EASTL\include;..\Source\External\EASTL\test\packages\EABase\include\Common;..\Source\External\tbb\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ExceptionHandling>false</ExceptionHandling>
@@ -145,7 +145,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Source;..\Source\External\DirectXMath\Inc;..\Source\External\EASTL\include;..\Source\External\EASTL\test\packages\EABase\include\Common;..\Source\External\tbb\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Source;..\Source\External;..\Source\External\DirectXMath\Inc;..\Source\External\EASTL\include;..\Source\External\EASTL\test\packages\EABase\include\Common;..\Source\External\tbb\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ExceptionHandling>false</ExceptionHandling>

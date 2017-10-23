@@ -12,4 +12,5 @@
 #include "tbb/tbb.h"
 #include <DirectXMath.h>
 #include "d3dx12.h"
+#include "bass.h"
 using namespace DirectX;

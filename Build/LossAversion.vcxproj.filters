@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <FxCompile Include="..\Source\SolidPS.hlsl" />
+    <FxCompile Include="..\Source\TriangleVS.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Source\Scene.cpp" />
+    <ClCompile Include="..\Source\LossAversion.cpp" />
+    <ClCompile Include="..\Source\DirectX12.cpp" />
+    <ClCompile Include="..\Source\Library.cpp" />
+    <ClCompile Include="..\Source\Pch.cpp" />
+    <ClCompile Include="..\Source\External\EASTL\source\allocator_eastl.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\assert.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\fixed_pool.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\hashtable.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\intrusive_list.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\numeric_limits.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\red_black_tree.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\string.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\External\EASTL\source\thread_support.cpp">
+      <Filter>EASTL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source\DirectX12.h" />
+    <ClInclude Include="..\Source\Scene.h" />
+    <ClInclude Include="..\Source\Library.h" />
+    <ClInclude Include="..\Source\Pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="EASTL">
+      <UniqueIdentifier>{7164baea-4e9e-4a34-86c3-b6a981fa9cd9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
